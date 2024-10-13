@@ -38,7 +38,13 @@ public class MainCamera : MonoBehaviour
 
     private void LateUpdate()
     {
-        transform.Translate(speed * transform.position.y * CamPos * Time.deltaTime);
+        Vector2 mousePos = Input.mousePosition;
+        RaycastHit hit = Intersection(mousePos, 1000);
+        if (hit.point.magnitude > 0f)
+        {
+            transform.Translate(speed * transform.position.y * CamPos * Time.deltaTime);
+        }
+
     }
     private void FixedUpdate()
     {
@@ -94,6 +100,10 @@ public class MainCamera : MonoBehaviour
             CamPos.y = 0;
             CamPos.z = 0;
         }
-        mainCamera.orthographicSize -= mw * zoomSpeed;
+        float ortoSize = mainCamera.orthographicSize - mw * zoomSpeed * Mathf.Pow(transform.position.y/15f, 2);
+        mainCamera.orthographicSize  = Mathf.Min(Mathf.Max(0.75f, ortoSize), 22f);
+
     }
+
+    
 }

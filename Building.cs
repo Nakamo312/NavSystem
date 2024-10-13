@@ -69,7 +69,6 @@ public class FabricLogic : GeneratorLogic
         if(isUpdate)
         {
             player.UpdateResourse(resource.id, productivity);
-            Debug.Log("+1");
         }
     }
 }

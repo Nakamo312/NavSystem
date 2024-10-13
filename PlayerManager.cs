@@ -5,15 +5,14 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     [SerializeField]
-    private List<int> resourses = new List<int>();
+    private Dictionary<int, int> resourses = new Dictionary<int, int>();
     [SerializeField]
     private UIManager uiPanel;
     // Start is called before the first frame update
     void Start()
     {
-        resourses.Add(0);
-        resourses.Add(0);
-        resourses.Add(0);
+        resourses[0] = 200;
+        resourses[1] = 0;
     }
     public bool UpdateResourse(int id, int count)
     {
